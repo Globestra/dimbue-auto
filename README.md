@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!GLOBESTRA html>
 <html lang="fr">
 
 <head>
@@ -178,7 +178,7 @@ Importation Chine • Voitures • Marchandises
 
 <p>Globestra Trade Import Export</p >
 
-<p>WhatsApp : +86XXXXXXXX</p >
+<p>WhatsApp : +8613114716287</p >
 
 </footer>
 
