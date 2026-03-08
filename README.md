@@ -253,3 +253,25 @@ window.location="https://wa.me/86123456789"
 </body>
 
 </html>
+<h3>Send us a message</h3>
+
+<form>
+
+
+</form>
+<h3>Send us a message</h3>
+
+<form>
+
+<input type="text" placeholder="Globestra">
+
+<input type="email" placeholder="capelogostavo@gmail.com">
+
+<textarea placeholder="Your message"></textarea>
+
+<button type="submit">Send</button>
+
+</form>
+<a href=" ">
+<button>Chat on WhatsApp</button>
+</a >
