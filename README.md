@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dimbue Auto Market</title>
+
+<title>Globestra Trade</title>
 
 <style>
 
 body{
 font-family:Arial;
 margin:0;
-background:#f2f2f2;
+background:#f4f4f4;
 }
 
 header{
-background:#000;
+background:#0a0a0a;
 color:white;
 padding:20px;
 display:flex;
@@ -23,64 +26,84 @@ align-items:center;
 }
 
 .logo{
-font-size:24px;
+font-size:28px;
+color:#ff3b3b;
 font-weight:bold;
-color:#ff3c3c;
 }
 
 nav a{
 color:white;
-margin:10px;
+margin-left:15px;
 text-decoration:none;
 }
 
 .hero{
-background:url('https://images.unsplash.com/photo-1503376780353-7e6692767b70');
+background:url("https://images.unsplash.com/photo-1552519507-da3b142c6e3d");
+height:420px;
 background-size:cover;
-height:400px;
 display:flex;
 align-items:center;
 justify-content:center;
 color:white;
 font-size:40px;
 font-weight:bold;
+text-align:center;
 }
 
 .container{
 padding:40px;
 }
 
-.car-list{
+.products{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 gap:20px;
 }
 
-.car{
+.product{
 background:white;
-padding:15px;
 border-radius:10px;
-box-shadow:0 5px 10px rgba(0,0,0,0.1);
+overflow:hidden;
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
 }
 
-.car img{
+.product img{
 width:100%;
-border-radius:10px;
+height:200px;
+object-fit:cover;
+}
+
+.product-info{
+padding:15px;
 }
 
 .price{
 color:red;
-font-size:20px;
+font-size:22px;
 font-weight:bold;
 }
 
 button{
-background:red;
+background:#ff3b3b;
 color:white;
-padding:10px;
 border:none;
-border-radius:5px;
+padding:10px;
+width:100%;
+margin-top:10px;
+border-radius:6px;
 cursor:pointer;
+}
+
+.admin{
+background:white;
+padding:30px;
+margin-top:50px;
+border-radius:10px;
+}
+
+input{
+padding:10px;
+margin:5px;
 width:100%;
 }
 
@@ -88,8 +111,18 @@ footer{
 background:black;
 color:white;
 text-align:center;
-padding:20px;
-margin-top:40px;
+padding:30px;
+margin-top:50px;
+}
+
+.tiktok{
+position:fixed;
+bottom:20px;
+left:20px;
+background:black;
+color:white;
+padding:10px 20px;
+border-radius:40px;
 }
 
 </style>
@@ -100,49 +133,42 @@ margin-top:40px;
 
 <header>
 
-<div class="logo">DIMBUE AUTO</div>
+<div class="logo">GLOBESTRA TRADE</div>
 
 <nav>
+
 <a href=" ">Accueil</a >
 <a href="#">Voitures</a >
+<a href="#">Produits</a >
 <a href="#">Contact</a >
+
 </nav>
 
 </header>
 
 <div class="hero">
-Voitures fiables au meilleur prix
+
+Importation Chine • Voitures • Marchandises
+
 </div>
 
 <div class="container">
 
-<h2>Nos voitures disponibles</h2>
+<h2>Produits disponibles</h2>
 
-<div class="car-list">
+<div class="products" id="productList">
 
-<div class="car">
-< img src="https://images.unsplash.com/photo-1555215695-3004980ad54c">
-<h3>Toyota RAV4 2016</h3>
-<p>Engine 2.0L</p >
-<p class="price">9800 USD</p >
-<button onclick="contact()">Contact WhatsApp</button>
 </div>
 
-<div class="car">
-< img src="https://images.unsplash.com/photo-1542362567-b07e54358753">
-<h3>Haval SUV</h3>
-<p>Automatic</p >
-<p class="price">8500 USD</p >
-<button onclick="contact()">Contact WhatsApp</button>
-</div>
+<div class="admin">
 
-<div class="car">
-< img src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d">
-<h3>Honda CRV</h3>
-<p>Very clean</p >
-<p class="price">9200 USD</p >
-<button onclick="contact()">Contact WhatsApp</button>
-</div>
+<h2>Ajouter un produit</h2>
+
+<input id="name" placeholder="Nom du produit">
+<input id="price" placeholder="Prix">
+<input id="image" placeholder="Lien image">
+
+<button onclick="addProduct()">Ajouter</button>
 
 </div>
 
@@ -150,18 +176,80 @@ Voitures fiables au meilleur prix
 
 <footer>
 
-<p>© 2026 Dimbue Auto Market</p >
-<p>Contact WhatsApp : +86XXXXXXXX</p >
+<p>Globestra Trade Import Export</p >
+
+<p>WhatsApp : +86XXXXXXXX</p >
 
 </footer>
 
+<div class="tiktok">
+
+Suivez-nous sur TikTok
+
+</div>
+
 <script>
 
-function contact(){
-window.location.href="https://wa.me/86123456789";
+let products=[]
+
+function addProduct(){
+
+let name=document.getElementById("name").value
+let price=document.getElementById("price").value
+let image=document.getElementById("image").value
+
+let product={
+name,
+price,
+image
+}
+
+products.push(product)
+
+displayProducts()
+
+}
+
+function displayProducts(){
+
+let container=document.getElementById("productList")
+
+container.innerHTML=""
+
+products.forEach(p=>{
+
+container.innerHTML+=`
+
+<div class="product">
+
+< img src="${p.image}">
+
+<div class="product-info">
+
+<h3>${p.name}</h3>
+
+<div class="price">$${p.price}</div>
+
+<button onclick="buy()">Acheter</button>
+
+</div>
+
+</div>
+
+`
+
+})
+
+}
+
+function buy(){
+
+window.location="https://wa.me/86123456789"
+
 }
 
 </script>
 
 </body>
+
 </html>
